@@ -2,7 +2,7 @@
 //  Bubble.swift
 //  BubblePopGame
 //
-//  Created by Leon Wang on 20/4/22.
+//  Created by Sakura Adachi on 17/4/2023.
 //
 
 import UIKit

@@ -31,21 +31,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 }
                 ViewController.gameBGMusic.play()
                 // Check if user hasn't entered any settings
-                if userDefaults.data(forKey: "gameTime") == nil {
+                if userDefaults.integer(forKey: "gameTime") == 0 {
                     userDefaults.set(60, forKey: "gameTime")
                 }
-                if userDefaults.data(forKey: "noBubbles") == nil {
+                if userDefaults.integer(forKey: "noBubbles") == 0 {
                     userDefaults.set(15, forKey: "noBubbles")
                 }
-                if userDefaults.data(forKey: "highScore") == nil {
+                if userDefaults.integer(forKey: "highScore") == 0 {
                     userDefaults.set(0, forKey: "highScore")
                 }
-                if userDefaults.data(forKey: "leaderboard") == nil {
-                    userDefaults.set(["Default": 0], forKey: "leaderboard")
+                if userDefaults.dictionary(forKey: "highscorepeople") == nil {
+                    userDefaults.set(["Default": 0], forKey: "highscorepeople")
                 }
-                if userDefaults.data(forKey: "hitSound") == nil {
+                if userDefaults.string(forKey: "hitSound") == nil {
                     userDefaults.set("on", forKey: "hitSound")
                 }
+                print(userDefaults.dictionary(forKey: "highscorepeople")!)
                 showUserNameAlert()
         }
         

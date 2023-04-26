@@ -20,12 +20,13 @@ class HighScoreViewController: UIViewController {
         if userDefaults.string(forKey: "playerName") == nil {
             userDefaults.set("Default", forKey: "playerName")
         }
-        if userDefaults.dictionary(forKey: "leaderboard") != nil {
-            namescore = userDefaults.dictionary(forKey: "leaderboard") as! [String : Int]
+        if userDefaults.dictionary(forKey: "highscorepeople") != nil {
+            namescore = userDefaults.dictionary(forKey: "highscorepeople") as! [String : Int]
         }
 
     }
     
+    // needed?
     @IBAction func returnMainPage(_ sender: UIButton) {
         self.navigationController?.popToRootViewController(animated: true)
     }

@@ -37,9 +37,8 @@ class PlayViewController: UIViewController {
         countdownLabel.text = String(userDefaults.integer(forKey: "gameTime")) + "s"
         remainingTime = userDefaults.integer(forKey: "gameTime")
         highScoreLabel.text = String(userDefaults.integer(forKey: "highScore"))
-        highscoreDict = userDefaults.dictionary(forKey: "leaderboard") as! [String: Int]
+        highscoreDict = userDefaults.dictionary(forKey: "highscorepeople") as! [String: Int]
         
-        //
         self.updateCountDown()
         
         // Activate timer, and generate bubble each second
@@ -58,7 +57,6 @@ class PlayViewController: UIViewController {
     
     //  update the 3,2,1... count down before the game starts. When countDown reaches 0, the label is removed from the parent view, and the game starts.
     func updateCountDown() {
-        print(self.countDown)
         self.countdownLbl.text = String(self.countDown-1)
         countDown -= 1
         if (countDown==0){
@@ -69,18 +67,23 @@ class PlayViewController: UIViewController {
     func updateUerScore(name: String){
         guard userDefaults.integer(forKey: name) == 0 else {
             // regular game player
+//            print(name, userDefaults.integer(forKey: name), score)
             guard userDefaults.integer(forKey: name) < score else{
                 return
             }
+            // update the score for regular player if this round's score is higher than before
             userDefaults.set(score, forKey: name)
             highscoreDict.updateValue(score, forKey: name)
-            userDefaults.set(highscoreDict, forKey: "leaderboard")
+//            print("Not First time:", highscoreDict)
+            userDefaults.set(highscoreDict, forKey: "highscorepeople")
             return
         }
         // new game player
         userDefaults.set(score, forKey: name)
         highscoreDict.updateValue(score, forKey: name)
-        userDefaults.set(highscoreDict, forKey: "leaderboard")
+//        print("First time:", highscoreDict)
+        userDefaults.set(highscoreDict, forKey: "highscorepeople")
+        return
     }
     
     //  runs a countdown timer and displays the remaining time on a label as the time elapses. counting() method is called once per second and reduces the timer's time by one second. When the timer reaches zero, this method does the following
@@ -95,7 +98,6 @@ class PlayViewController: UIViewController {
             // Checks the high score and stores the player's score.
             let playerName: String = userDefaults.string(forKey: "playerName")!
             updateUerScore(name: playerName)
-            
             // Instantiate and display the HighScoreViewController.
             // Hides the back button of this scene.
             let vc = storyboard?.instantiateViewController(identifier: "HighScoreViewController") as! HighScoreViewController
