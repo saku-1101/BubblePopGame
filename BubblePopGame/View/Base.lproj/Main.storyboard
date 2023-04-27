@@ -167,7 +167,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIGH SCORE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uda-jw-OfW" userLabel="HighScoreLbl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HIGH SCORE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uda-jw-OfW" userLabel="HighScore">
                                 <rect key="frame" x="276.5" y="122" width="100.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -179,7 +179,7 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" systemColor="labelColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5NS-XB-y90" userLabel="CountdownTimer">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5NS-XB-y90" userLabel="CountdownLabel">
                                 <rect key="frame" x="192.5" y="122" width="29.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -188,13 +188,13 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6s8-0C-xFc">
                                 <rect key="frame" x="69" y="142" width="276" height="20.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdc-Zi-7Gg" userLabel="ScoreLbl">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdc-Zi-7Gg" userLabel="ScoreLabel">
                                         <rect key="frame" x="0.0" y="0.0" width="17.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="201" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bh4-YO-eer" userLabel="HighScoreLbl">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="201" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bh4-YO-eer" userLabel="HighScoreLabel">
                                         <rect key="frame" x="248" y="0.0" width="28" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -202,7 +202,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmZ-Ws-AfA" userLabel="CountdownLbl">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmZ-Ws-AfA" userLabel="CountdownStartingLabel">
                                 <rect key="frame" x="181" y="400.5" width="52" height="95.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="80"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -231,8 +231,8 @@
                     <navigationItem key="navigationItem" id="qz6-3i-2RP"/>
                     <connections>
                         <outlet property="countdownLabel" destination="5NS-XB-y90" id="P2H-Da-bym"/>
-                        <outlet property="countdownLbl" destination="zmZ-Ws-AfA" id="d0z-qR-13o"/>
-                        <outlet property="highScoreLabel" destination="Bh4-YO-eer" id="Mhf-yq-eyL"/>
+                        <outlet property="countdownStartingLabel" destination="zmZ-Ws-AfA" id="Rjg-WL-G0C"/>
+                        <outlet property="highScoreLabel" destination="Bh4-YO-eer" id="rtq-4t-S9n"/>
                         <outlet property="scoreLabel" destination="bdc-Zi-7Gg" id="acx-o0-wZG"/>
                     </connections>
                 </viewController>
@@ -363,7 +363,7 @@
                                                             <action selector="maxTimeSlider:" destination="Gug-c2-3IS" eventType="valueChanged" id="c6h-nP-Dll"/>
                                                         </connections>
                                                     </slider>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEg-PG-K0I" userLabel="TimeLbl">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YEg-PG-K0I" userLabel="TimeLabel">
                                                         <rect key="frame" x="0.0" y="30" width="118" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
                                                         <color key="textColor" systemColor="systemTealColor"/>
@@ -396,7 +396,7 @@
                                                             <action selector="maxBubblesSlider:" destination="Gug-c2-3IS" eventType="valueChanged" id="qBM-aG-aJ0"/>
                                                         </connections>
                                                     </slider>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ps-NL-Rmv" userLabel="NoBubblesLbl">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ps-NL-Rmv" userLabel="bubblesNumberLabel">
                                                         <rect key="frame" x="0.0" y="30" width="114" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
                                                         <color key="textColor" systemColor="systemTealColor"/>
@@ -435,7 +435,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yaY-jd-W7a">
                                                 <rect key="frame" x="285" y="8.5" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="hitSound:" destination="Gug-c2-3IS" eventType="valueChanged" id="P1v-X6-uAD"/>
+                                                    <action selector="popSound:" destination="Gug-c2-3IS" eventType="valueChanged" id="6cK-jS-18K"/>
                                                 </connections>
                                             </switch>
                                         </subviews>
@@ -456,12 +456,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="Qow-K7-NVU"/>
                     <connections>
+                        <outlet property="bubblesNumberLabel" destination="2ps-NL-Rmv" id="22R-9W-kUo"/>
                         <outlet property="maxBubblesSlider" destination="wci-AU-OOt" id="2g3-3A-yGX"/>
                         <outlet property="musicSwitch" destination="jP9-gV-mJ2" id="f4R-MI-68t"/>
-                        <outlet property="noBubblesLbl" destination="2ps-NL-Rmv" id="RWg-hp-x7N"/>
                         <outlet property="playerName" destination="KZ8-5b-Xy0" id="vLj-yr-6sj"/>
                         <outlet property="soundSwitch" destination="yaY-jd-W7a" id="tIt-Tu-tku"/>
-                        <outlet property="timeLbl" destination="YEg-PG-K0I" id="9x2-CH-XFY"/>
+                        <outlet property="timeLabel" destination="YEg-PG-K0I" id="DKy-qQ-RdB"/>
                         <outlet property="timerSlider" destination="Utj-zX-43d" id="fWT-p6-6Hp"/>
                     </connections>
                 </viewController>

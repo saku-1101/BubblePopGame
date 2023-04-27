@@ -20,8 +20,8 @@ class HighScoreViewController: UIViewController {
         if userDefaults.string(forKey: "playerName") == nil {
             userDefaults.set("Default", forKey: "playerName")
         }
-        if userDefaults.dictionary(forKey: "highscorepeople") != nil {
-            namescore = userDefaults.dictionary(forKey: "highscorepeople") as! [String : Int]
+        if userDefaults.dictionary(forKey: "highscorePeople") != nil {
+            namescore = userDefaults.dictionary(forKey: "highscorePeople") as! [String : Int]
         }
 
     }

@@ -11,8 +11,8 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     let userDefaults = UserDefaults()
     
     @IBOutlet weak var playerName: UILabel!
-    @IBOutlet weak var timeLbl: UILabel!
-    @IBOutlet weak var noBubblesLbl: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var bubblesNumberLabel: UILabel!
     @IBOutlet weak var timerSlider: UISlider!
     @IBOutlet weak var maxBubblesSlider: UISlider!
     @IBOutlet weak var soundSwitch: UISwitch!
@@ -23,14 +23,14 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     @IBAction func maxTimeSlider(_ sender: UISlider) {
         let maxTime = Int(sender.value)
         userDefaults.set(maxTime, forKey: "gameTime")
-        timeLbl.text = String(maxTime) + "s"
+        timeLabel.text = String(maxTime) + "s"
     }
     
     // Update maximum bubbles given the players choice
     @IBAction func maxBubblesSlider(_ sender: UISlider) {
         let maxBubbles = Int(sender.value)
-        userDefaults.set(maxBubbles, forKey: "noBubbles")
-        noBubblesLbl.text = String(maxBubbles)
+        userDefaults.set(maxBubbles, forKey: "bubblesNumber")
+        bubblesNumberLabel.text = String(maxBubbles)
     }
     
     @IBAction func bgMusic(_ sender: UISwitch) {
@@ -40,18 +40,19 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             stopBackgroundMusic()
         }
     }
-    func playBackgroundMusic(){                ViewController.gameBGMusic.play()
+    func playBackgroundMusic(){
+        ViewController.backGroundMusic.play()
     }
     
     func stopBackgroundMusic() {
-        ViewController.gameBGMusic.stop()
+        ViewController.backGroundMusic.stop()
     }
     
-    @IBAction func hitSound(_ sender: UISwitch) {
+    @IBAction func popSound(_ sender: UISwitch) {
         if sender.isOn {
-            userDefaults.set("on", forKey: "hitSound")
+            userDefaults.set("on", forKey: "popSound")
         } else {
-            userDefaults.set("off", forKey: "hitSound")
+            userDefaults.set("off", forKey: "popSound")
         }
     }
     
@@ -62,13 +63,13 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
         timerSlider.value = userDefaults.float(forKey: "gameTime")
 
-        timeLbl.text = String(userDefaults.integer(forKey: "gameTime")) + "s"
+        timeLabel.text = String(userDefaults.integer(forKey: "gameTime")) + "s"
 
-        maxBubblesSlider.value = userDefaults.float(forKey: "noBubbles")
+        maxBubblesSlider.value = userDefaults.float(forKey: "bubblesNumber")
 
-        noBubblesLbl.text = String(userDefaults.integer(forKey: "noBubbles"))
+        bubblesNumberLabel.text = String(userDefaults.integer(forKey: "bubblesNumber"))
         
-        guard userDefaults.string(forKey: "hitSound") == "on" else{
+        guard userDefaults.string(forKey: "popSound") == "on" else{
             soundSwitch.setOn(false, animated: true)
             return
         }

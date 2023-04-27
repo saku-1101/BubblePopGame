@@ -5,17 +5,24 @@
 //  Created by Sakura Adachi on 17/4/23.
 //
 
+// Main Game Screen
+// The Game will start after 3,2,1... count down
+// The current user's score is shown in the left
+// The time limit is shown in the middle
+// The highest score that among all the game players is displayed in the right
+// The number of the bubbles is regulated on Settings
+// The Time limit is regulated on Settings
+// After remainingTime variable goes to 0, HighScore screen will automatically be shown.
 import UIKit
 
 class PlayViewController: UIViewController {
     
-    // get global static user conditions
     let userDefaults = UserDefaults()
 
     @IBOutlet var countdownLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var highScoreLabel: UILabel!
-    @IBOutlet weak var countdownLbl: UILabel!
+    @IBOutlet weak var countdownStartingLabel: UILabel!
     
     // define default value
     var remainingTime = 60
@@ -36,8 +43,9 @@ class PlayViewController: UIViewController {
         
         countdownLabel.text = String(userDefaults.integer(forKey: "gameTime")) + "s"
         remainingTime = userDefaults.integer(forKey: "gameTime")
-        highScoreLabel.text = String(userDefaults.integer(forKey: "highScore"))
-        highscoreDict = userDefaults.dictionary(forKey: "highscorepeople") as! [String: Int]
+        highscore = userDefaults.integer(forKey: "highScore")
+        highScoreLabel.text = "\(highscore)"
+        highscoreDict = userDefaults.dictionary(forKey: "highscorePeople") as! [String: Int]
         
         self.updateCountDown()
         
@@ -57,36 +65,34 @@ class PlayViewController: UIViewController {
     
     //  update the 3,2,1... count down before the game starts. When countDown reaches 0, the label is removed from the parent view, and the game starts.
     func updateCountDown() {
-        self.countdownLbl.text = String(self.countDown-1)
+        self.countdownStartingLabel.text = String(self.countDown-1)
         countDown -= 1
         if (countDown==0){
-            self.countdownLbl.removeFromSuperview()
+            self.countdownStartingLabel.removeFromSuperview()
         }
     }
     
+    // either updating an existing user's score or creating a new user's score record.
     func updateUerScore(name: String){
         guard userDefaults.integer(forKey: name) == 0 else {
             // regular game player
-//            print(name, userDefaults.integer(forKey: name), score)
             guard userDefaults.integer(forKey: name) < score else{
                 return
             }
             // update the score for regular player if this round's score is higher than before
             userDefaults.set(score, forKey: name)
             highscoreDict.updateValue(score, forKey: name)
-//            print("Not First time:", highscoreDict)
-            userDefaults.set(highscoreDict, forKey: "highscorepeople")
+            userDefaults.set(highscoreDict, forKey: "highscorePeople")
             return
         }
         // new game player
         userDefaults.set(score, forKey: name)
         highscoreDict.updateValue(score, forKey: name)
-//        print("First time:", highscoreDict)
-        userDefaults.set(highscoreDict, forKey: "highscorepeople")
+        userDefaults.set(highscoreDict, forKey: "highscorePeople")
         return
     }
     
-    //  runs a countdown timer and displays the remaining time on a label as the time elapses. counting() method is called once per second and reduces the timer's time by one second. When the timer reaches zero, this method does the following
+    //  runs a countdown timer and displays the remaining time on a label as the time elapses. counting() method is called once per second and reduces the timer's time by one second. When the timer reaches zero, this method shows HighScore screen
     @objc func counting() {
         remainingTime -= 1
         countdownLabel.text = String(remainingTime) + "s"
@@ -119,17 +125,17 @@ class PlayViewController: UIViewController {
 
     @objc func generateBubble(){
         
-        let noBubbles = userDefaults.integer(forKey: "noBubbles")
+        let bubblesNumber = userDefaults.integer(forKey: "bubblesNumber")
         // Rondomely generate the number of bubbles on the screen
-        let randomInt = Int.random(in: 0...noBubbles)
+        let randomInt = Int.random(in: 0...bubblesNumber)
         var i = 0
-        while (i < randomInt && maxBubbles < noBubbles){
+        while (i < randomInt && maxBubbles < bubblesNumber){
             // Create button object
             bubble = Bubble()
             // No overlap
             if (!isBubbleOverlapped(newBubble: bubble)){
-                // Show button
-                bubble.animation()
+                // Show bubble
+                bubble.showBubble()
                 self.view.addSubview(bubble)
                 bubble.addTarget(self, action: #selector(bubblePressed), for: .touchUpInside)
                 bubbleStore += [bubble]
@@ -139,22 +145,20 @@ class PlayViewController: UIViewController {
         }
     }
     
-    @objc func deleteBubble(){  // Remove bubbles every second
+    // delete bubbles
+    @objc func deleteBubble() {
+        // If the bubble store is empty, there are no bubbles to delete.
+        guard !bubbleStore.isEmpty else { return }
         
-        let randomInt = Int.random(in: 0...bubbleStore.count)
-        var i = 0
+        // Determine the maximum number of bubbles to delete, which is the minimum of maxBubbles and the total number of bubbles.
+        let maxToDelete = min(maxBubbles, Int.random(in: 1...bubbleStore.count))
         
-        while (i < randomInt){
-            let rand = bubbleStore.randomElement()
-            // remove count of bubble
+        // Remove a random bubble from the bubble store and the superview for each iteration of the loop, up to maxToDelete times.
+        for _ in 0..<maxToDelete {
+            let randomIndex = Int.random(in: 0..<bubbleStore.count)
+            let randomBubble = bubbleStore.remove(at: randomIndex)
             maxBubbles -= 1
-            // remove bubble from superview
-            rand!.removeFromSuperview()
-            // remove bubble from array
-            if let index = bubbleStore.firstIndex(of: rand!){
-                bubbleStore.remove(at: index)
-            }
-            i += 1
+            randomBubble.removeFromSuperview()
         }
     }
     
@@ -170,14 +174,6 @@ class PlayViewController: UIViewController {
             previousBubbleVlue = sender.bubbleValue
         }
         
-        // Remove count of bubble
-        maxBubbles -= 1
-        
-        // Remove bubble from bubbleStore when pressed
-        if let index = bubbleStore.firstIndex(of: sender.self) {
-            bubbleStore.remove(at: index)
-        }
-        
         // Change the score in Label
         scoreLabel.text = String(score)
         
@@ -187,10 +183,18 @@ class PlayViewController: UIViewController {
             userDefaults.set(score, forKey: "highScore")
         }
         
+        // Remove count of bubble
+        maxBubbles -= 1
+        
+        // Remove bubble from bubbleStore when pressed
+        if let index = bubbleStore.firstIndex(of: sender.self) {
+            bubbleStore.remove(at: index)
+        }
+
         // Remove pressed bubble from view
         sender.popBubble()
-        if (userDefaults.string(forKey: "hitSound") == "on"){
-            sender.popingSound()
+        if (userDefaults.string(forKey: "popSound") == "on"){
+            sender.popSound()
         }
     }
 

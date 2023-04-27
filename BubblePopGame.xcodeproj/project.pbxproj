@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		279DA4A2281BBD4800639D30 /* hitsound.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 279DA4A1281BBD4800639D30 /* hitsound.mp4 */; };
 		27CC86E32810209F005B578A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC86E22810209F005B578A /* AppDelegate.swift */; };
 		27CC86E52810209F005B578A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC86E42810209F005B578A /* SceneDelegate.swift */; };
 		27CC86E72810209F005B578A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC86E62810209F005B578A /* ViewController.swift */; };
@@ -18,11 +17,11 @@
 		27CC870228115AD4005B578A /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC870128115AD4005B578A /* PlayViewController.swift */; };
 		27CC870428116200005B578A /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC870328116200005B578A /* HighScoreViewController.swift */; };
 		27CC870628116869005B578A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC870528116869005B578A /* SettingsViewController.swift */; };
+		302E164729FA30F300FEC48E /* popSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 302E164629FA30F300FEC48E /* popSound.mp3 */; };
 		303BC30B29EE37FC006647C3 /* pokemonBGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 303BC30A29EE37FC006647C3 /* pokemonBGM.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		279DA4A1281BBD4800639D30 /* hitsound.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = hitsound.mp4; sourceTree = "<group>"; };
 		27CC86DF2810209F005B578A /* BubblePopGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BubblePopGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CC86E22810209F005B578A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27CC86E42810209F005B578A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,6 +34,7 @@
 		27CC870128115AD4005B578A /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		27CC870328116200005B578A /* HighScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		27CC870528116869005B578A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		302E164629FA30F300FEC48E /* popSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSound.mp3; sourceTree = "<group>"; };
 		303BC30A29EE37FC006647C3 /* pokemonBGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pokemonBGM.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,8 +52,8 @@
 		279DA4A0281BBD2500639D30 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				302E164629FA30F300FEC48E /* popSound.mp3 */,
 				303BC30A29EE37FC006647C3 /* pokemonBGM.mp3 */,
-				279DA4A1281BBD4800639D30 /* hitsound.mp4 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CC86EF281020A2005B578A /* LaunchScreen.storyboard in Resources */,
-				279DA4A2281BBD4800639D30 /* hitsound.mp4 in Resources */,
+				302E164729FA30F300FEC48E /* popSound.mp3 in Resources */,
 				303BC30B29EE37FC006647C3 /* pokemonBGM.mp3 in Resources */,
 				27CC86EC281020A2005B578A /* Assets.xcassets in Resources */,
 				27CC86EA2810209F005B578A /* Main.storyboard in Resources */,
