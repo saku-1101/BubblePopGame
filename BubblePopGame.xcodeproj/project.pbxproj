@@ -18,6 +18,7 @@
 		27CC870428116200005B578A /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC870328116200005B578A /* HighScoreViewController.swift */; };
 		27CC870628116869005B578A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CC870528116869005B578A /* SettingsViewController.swift */; };
 		302E164729FA30F300FEC48E /* popSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 302E164629FA30F300FEC48E /* popSound.mp3 */; };
+		302E164A29FA702600FEC48E /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302E164929FA702600FEC48E /* UserDefaultsHelper.swift */; };
 		303BC30B29EE37FC006647C3 /* pokemonBGM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 303BC30A29EE37FC006647C3 /* pokemonBGM.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		27CC870328116200005B578A /* HighScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		27CC870528116869005B578A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		302E164629FA30F300FEC48E /* popSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = popSound.mp3; sourceTree = "<group>"; };
+		302E164929FA702600FEC48E /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		303BC30A29EE37FC006647C3 /* pokemonBGM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pokemonBGM.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 		27CC86E12810209F005B578A /* BubblePopGame */ = {
 			isa = PBXGroup;
 			children = (
+				302E164829FA6EC600FEC48E /* Utils */,
 				279DA4A0281BBD2500639D30 /* Sounds */,
 				27CC86F8281023B0005B578A /* Controller */,
 				27CC86F7281023AB005B578A /* View */,
@@ -115,6 +118,14 @@
 				27CC870528116869005B578A /* SettingsViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		302E164829FA6EC600FEC48E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				302E164929FA702600FEC48E /* UserDefaultsHelper.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +203,7 @@
 			files = (
 				27CC86E72810209F005B578A /* ViewController.swift in Sources */,
 				27CC870228115AD4005B578A /* PlayViewController.swift in Sources */,
+				302E164A29FA702600FEC48E /* UserDefaultsHelper.swift in Sources */,
 				27CC870628116869005B578A /* SettingsViewController.swift in Sources */,
 				27CC86E32810209F005B578A /* AppDelegate.swift in Sources */,
 				27CC86E52810209F005B578A /* SceneDelegate.swift in Sources */,
@@ -343,17 +355,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6R5U824UK8;
+				DEVELOPMENT_TEAM = 5WQTP6T7UV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BubblePopGame/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -373,17 +384,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6R5U824UK8;
+				DEVELOPMENT_TEAM = 5WQTP6T7UV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BubblePopGame/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

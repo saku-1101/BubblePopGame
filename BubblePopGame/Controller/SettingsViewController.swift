@@ -8,7 +8,6 @@
 import UIKit
 
 class SettingsViewController: UIViewController, UITextFieldDelegate {
-    let userDefaults = UserDefaults()
     
     @IBOutlet weak var playerName: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -22,14 +21,14 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     // Update maximum time given the players choice
     @IBAction func maxTimeSlider(_ sender: UISlider) {
         let maxTime = Int(sender.value)
-        userDefaults.set(maxTime, forKey: "gameTime")
+        Helper.shared.set(maxTime, forKey: "gameTime")
         timeLabel.text = String(maxTime) + "s"
     }
     
     // Update maximum bubbles given the players choice
     @IBAction func maxBubblesSlider(_ sender: UISlider) {
         let maxBubbles = Int(sender.value)
-        userDefaults.set(maxBubbles, forKey: "bubblesNumber")
+        Helper.shared.set(maxBubbles, forKey: "bubblesNumber")
         bubblesNumberLabel.text = String(maxBubbles)
     }
     
@@ -50,26 +49,26 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func popSound(_ sender: UISwitch) {
         if sender.isOn {
-            userDefaults.set("on", forKey: "popSound")
+            Helper.shared.set("on", forKey: "popSound")
         } else {
-            userDefaults.set("off", forKey: "popSound")
+            Helper.shared.set("off", forKey: "popSound")
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        playerName.text = userDefaults.string(forKey: "playerName")
+        playerName.text = Helper.shared.string(forKey: "playerName") as? String
 
-        timerSlider.value = userDefaults.float(forKey: "gameTime")
+        timerSlider.value = Float(Helper.shared.integer(forKey: "gameTime"))
 
-        timeLabel.text = String(userDefaults.integer(forKey: "gameTime")) + "s"
+        timeLabel.text = String(Helper.shared.integer(forKey: "gameTime")) + "s"
 
-        maxBubblesSlider.value = userDefaults.float(forKey: "bubblesNumber")
+        maxBubblesSlider.value = Float(Helper.shared.integer(forKey: "bubblesNumber"))
 
-        bubblesNumberLabel.text = String(userDefaults.integer(forKey: "bubblesNumber"))
+        bubblesNumberLabel.text = String(Helper.shared.integer(forKey: "bubblesNumber"))
         
-        guard userDefaults.string(forKey: "popSound") == "on" else{
+        guard Helper.shared.string(forKey: "popSound") as! String == "on" else{
             soundSwitch.setOn(false, animated: true)
             return
         }
@@ -78,7 +77,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        userDefaults.set(playerName.text, forKey: "playerName")
+        Helper.shared.set(playerName.text, forKey: "playerName")
         playerName.resignFirstResponder()
         return true
     }

@@ -14,6 +14,7 @@
 // The Time limit is regulated on Settings
 // After remainingTime variable goes to 0, HighScore screen will automatically be shown.
 import UIKit
+import AVFoundation
 
 class PlayViewController: UIViewController {
     
@@ -31,7 +32,7 @@ class PlayViewController: UIViewController {
     var timer = Timer()
     var bubble = Bubble()
     var maxBubbles = 0
-    var bubbleStore = [Bubble]()
+    var bubbleStore:[Bubble] = []
     var previousBubbleVlue = -1
     var highscoreDict = [String: Int]()
     var countDown = 4 // The 3, 2, 1...count down value before the game
@@ -41,11 +42,11 @@ class PlayViewController: UIViewController {
         
         scoreLabel.text = String(score)
         
-        countdownLabel.text = String(userDefaults.integer(forKey: "gameTime")) + "s"
-        remainingTime = userDefaults.integer(forKey: "gameTime")
-        highscore = userDefaults.integer(forKey: "highScore")
+        countdownLabel.text = String(Helper.shared.integer(forKey: "gameTime")) + "s"
+        remainingTime = Helper.shared.integer(forKey: "gameTime")
+        highscore = Helper.shared.integer(forKey: "highScore")
         highScoreLabel.text = "\(highscore)"
-        highscoreDict = userDefaults.dictionary(forKey: "highscorePeople") as! [String: Int]
+        highscoreDict = Helper.shared.dictionary(forKey: "highscorePeople") as! [String: Int]
         
         self.updateCountDown()
         
@@ -74,21 +75,21 @@ class PlayViewController: UIViewController {
     
     // either updating an existing user's score or creating a new user's score record.
     func updateUerScore(name: String){
-        guard userDefaults.integer(forKey: name) == 0 else {
+        guard Helper.shared.integer(forKey: name) == 0 else {
             // regular game player
-            guard userDefaults.integer(forKey: name) < score else{
+            guard Helper.shared.integer(forKey: name) < score else{
                 return
             }
             // update the score for regular player if this round's score is higher than before
-            userDefaults.set(score, forKey: name)
+            Helper.shared.set(score, forKey: name)
             highscoreDict.updateValue(score, forKey: name)
-            userDefaults.set(highscoreDict, forKey: "highscorePeople")
+            Helper.shared.set(highscoreDict, forKey: "highscorePeople")
             return
         }
         // new game player
-        userDefaults.set(score, forKey: name)
+        Helper.shared.set(score, forKey: name)
         highscoreDict.updateValue(score, forKey: name)
-        userDefaults.set(highscoreDict, forKey: "highscorePeople")
+        Helper.shared.set(highscoreDict, forKey: "highscorePeople")
         return
     }
     
@@ -102,7 +103,7 @@ class PlayViewController: UIViewController {
             timer.invalidate()
             
             // Checks the high score and stores the player's score.
-            let playerName: String = userDefaults.string(forKey: "playerName")!
+            let playerName: String = Helper.shared.string(forKey: "playerName") as! String
             updateUerScore(name: playerName)
             // Instantiate and display the HighScoreViewController.
             // Hides the back button of this scene.
@@ -125,12 +126,12 @@ class PlayViewController: UIViewController {
 
     @objc func generateBubble(){
         
-        let bubblesNumber = userDefaults.integer(forKey: "bubblesNumber")
+        let bubblesNumber = Helper.shared.integer(forKey: "bubblesNumber")
         // Rondomely generate the number of bubbles on the screen
         let randomInt = Int.random(in: 0...bubblesNumber)
         var i = 0
         while (i < randomInt && maxBubbles < bubblesNumber){
-            // Create button object
+            // Create bubble
             bubble = Bubble()
             // No overlap
             if (!isBubbleOverlapped(newBubble: bubble)){
@@ -160,6 +161,8 @@ class PlayViewController: UIViewController {
             maxBubbles -= 1
             randomBubble.removeFromSuperview()
         }
+        
+        print("=====> Buble store \(bubbleStore.count)")
     }
     
     @IBAction func bubblePressed(_ sender: Bubble) {
@@ -180,7 +183,7 @@ class PlayViewController: UIViewController {
         // If the current score is higher than highscore, change the label and the value of highScore in userDeraults.
         if score > highscore {
             highScoreLabel.text = scoreLabel.text
-            userDefaults.set(score, forKey: "highScore")
+            Helper.shared.set(score, forKey: "highScore")
         }
         
         // Remove count of bubble
@@ -193,8 +196,24 @@ class PlayViewController: UIViewController {
 
         // Remove pressed bubble from view
         sender.popBubble()
-        if (userDefaults.string(forKey: "popSound") == "on"){
-            sender.popSound()
+        if (Helper.shared.string(forKey: "popSound") as! String == "on"){
+            popSound()
+        }
+    }
+    
+    var audioPlayer = AVAudioPlayer()
+    // make bubble-removing sound
+    func popSound(){
+        guard let popSoundURL = Bundle.main.url(forResource: "popSound", withExtension: "mp3") else {
+                    print("Error: Failed to find popSound.mp3 file")
+                    return
+                }
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: popSoundURL)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        } catch {
+            print(error)
         }
     }
 

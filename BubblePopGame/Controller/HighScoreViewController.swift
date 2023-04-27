@@ -16,12 +16,12 @@ class HighScoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if userDefaults.string(forKey: "playerName") == nil {
-            userDefaults.set("Default", forKey: "playerName")
+        
+        if Helper.shared.string(forKey: "playerName") == nil {
+            Helper.shared.set("Default", forKey: "playerName")
         }
-        if userDefaults.dictionary(forKey: "highscorePeople") != nil {
-            namescore = userDefaults.dictionary(forKey: "highscorePeople") as! [String : Int]
+        if !Helper.shared.dictionary(forKey: "highscorePeople").isEmpty {
+            namescore = Helper.shared.dictionary(forKey: "highscorePeople") as! [String : Int]
         }
 
     }
