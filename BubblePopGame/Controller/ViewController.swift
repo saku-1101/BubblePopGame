@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print(error.description)
         }
         // Start playing the background music
-//        ViewController.backGroundMusic.play()
+        ViewController.backGroundMusic.play()
         
         // Register a user
         showUserNameAlert()
